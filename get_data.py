@@ -97,10 +97,10 @@ def get_new_article(url):
                   logger.warning(e)
 
               logger.info(f"检测到{user_name}更新了帖子，将爬取并写入文件")
-              with open(f"links{today}.csv", mode="a", newline="", encoding="utf-8") as file:
-                  writer = csv.writer(file)
-                  # 写入表头
-                  writer.writerow([major_name[index],user_name])
+              # with open(f"links{today}.csv", mode="a", newline="", encoding="utf-8") as file:
+              #     writer = csv.writer(file)
+              #     # 写入表头
+              #     writer.writerow([major_name[index],user_name])
 
               with open(f"links{today}.csv", mode="a", newline="", encoding="utf-8") as file:
                   writer = csv.writer(file)
@@ -172,7 +172,7 @@ def get_new_article(url):
                 with open(f"links{today}.csv", mode="a", newline="", encoding="utf-8") as file:
                   writer = csv.writer(file)
                   # 写入内容
-                  writer.writerow([page.url,f"{count_wants}人想要",f"{count_favorite}浏览",extracted_text])
+                  writer.writerow([major_name[index],user_name,page.url,f"{count_wants}人想要",f"{count_favorite}浏览",extracted_text])
                   writer.writerow('')  #写入空行
                 logger.info(f'想要的数量是：{count_wants}')
                 logger.info(f'喜欢的数量是：{count_favorite}')
@@ -230,4 +230,7 @@ if __name__ == "__main__":
        logger.info(proxy_ip)       
     for url in https_links:
       get_new_article(url)
+      random_init = random.randint(20*60, 60*30)
+      logger.info(f"开始暂停{random_init}秒")
+      time.sleep(random_init)
 
