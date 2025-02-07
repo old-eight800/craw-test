@@ -91,7 +91,8 @@ def get_new_article(url):
                       logger.info(f"评价时间: {time_str}")
                       evaluation_value.append(text_before_time)
                       evaluation_time.append(time_str)
-                      result_list.append(f'评价内容:{text_before_time}\n评价时间:{time_str}')
+                      result_list.append(f'{text_before_time}')
+                      result_list.append(f'{time_str}')
               except BaseException as e:
                   logger.warning(e)
 
